@@ -64,7 +64,7 @@ class HangmanViewController: UIViewController {
             pastGuesses.text = ""
             game.guessedLetters = NSMutableArray()
             charTextField.text! = ""
-            currentString.text = ""
+            failedGuesses = 0
             game.knownString = ""
             for (var i = 0; i < game.answer!.characters.count; i += 1) {
                 if (game.answer! as NSString).substringWithRange(NSMakeRange(i, 1)) == " " {
@@ -73,6 +73,7 @@ class HangmanViewController: UIViewController {
                     game.knownString = game.knownString! + "_"
                 }
             }
+            currentString.text = game.knownString
             failedGuesses = 0
         }
     }
@@ -89,6 +90,7 @@ class HangmanViewController: UIViewController {
         let alertController = UIAlertController(title: "Game Result", message:
             "FAIL", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default,handler: nil))
+        drawing.image = UIImage(named: "basic-hangman-img/hangman7.gif")
         winfail = 1
         self.presentViewController(alertController, animated: true, completion: nil)
     }
